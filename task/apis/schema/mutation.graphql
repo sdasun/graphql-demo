@@ -1,0 +1,25 @@
+type Mutation {
+    createTask(title: String!, description: String!): TaskResponse
+    createTaskComplex(task: TaskInput!): TaskResponse
+    markTaskAsCompleted(id: ID!): TaskResponse
+
+    createSubTask(taskId: ID!, title: String!, description: String!): SubTaskResponse
+    markSubTaskAsCompleted(id: ID!): SubTaskResponse
+}
+
+type TaskResponse {
+    task: Task
+    error: String
+    status: Boolean
+}
+
+type SubTaskResponse {
+    subTask: SubTask
+    error: String
+    status: Boolean
+}
+
+input TaskInput {
+    title: String
+    description: String
+}

@@ -1,0 +1,44 @@
+type Query {
+    tasks: TaskListResponse
+    task(id: ID!): TaskResponse
+}
+
+"""
+"SubType" is a type that is a subtype of "Task".
+"""
+type SubTask {
+    id: ID
+    title: String
+    description: String
+    completed: Boolean
+    task: Task
+}
+
+"""
+"Task" is the root type. It has a field called "tasks" that points to a list of tasks.
+
+"Task" is an object type (analogous to a table in SQL). It has the following fields:
+    - "id" (of type String)
+    - "title" (of type String)
+    - "description" (of type String)
+    - "completed" (of type Boolean)
+    - "subTasks" (of type [SubTask])
+"""
+type Task {
+    "Task ID"
+    id: ID
+    "Title of the task"
+    title: String
+    "Detailed description of the task"
+    description: String
+    "Is the task completed?"
+    completed: Boolean
+    "List of sub tasks of the task"
+    subTasks: [SubTask]
+}
+
+type TaskListResponse {
+    tasks: [Task]
+    error: String
+    status: Boolean
+}
